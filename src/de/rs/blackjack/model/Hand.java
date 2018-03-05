@@ -9,7 +9,7 @@ import java.util.List;
  * The Hand class represents a player or dealers hand.
  * It contains all cards of one hand.
  */
-public class Hand {
+public class Hand implements Comparable<Hand> {
 
     /**
      * contains all cards of one hand
@@ -44,27 +44,29 @@ public class Hand {
      * @return the score of the hand
      */
     public int calculateScore() {
-        int aceCount = 0;
+        int acesForLessScoreCount = 0;
         int score = 0;
 
         //adding up the card values
         for(Card card : cards) {
-            switch(card.getValue()) {
-                case ACE:
-                    aceCount++;
-                    score += 11;
-                    break;
-                default:
-                    score += card.getScore();
+            score += card.getScore();
+            if(card.getValue() == Card.Value.ACE && !card.isCountedAsOne()) {
+                acesForLessScoreCount++;
             }
         }
 
-        //counts every ace as a one if the hand is already bust
-        while(score > 21 && aceCount > 0) {
-            score -= 10;
-            aceCount--;
+        if(score > 21 && acesForLessScoreCount > 0) {
+            for(Card card : cards) {
+                card.toggleAceValue();
+            }
+            return calculateScore();
         }
+
         return score;
+    }
+
+    public int cardCount() {
+        return cards.size();
     }
 
     /**
@@ -82,5 +84,11 @@ public class Hand {
             System.out.println(card);
         }
         return str.toString();
+    }
+
+    @Override
+    public int compareTo(Hand o) {
+        //writing compare to another hand
+        return 0;
     }
 }

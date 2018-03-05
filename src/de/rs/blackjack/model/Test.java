@@ -11,6 +11,17 @@ public class Test {
         shoe.create();
         shoe.shuffle();
 
+        System.out.println(shoe);
+
+        Hand hand = new Hand();
+        hand.addCard(shoe.dealCard());
+        hand.addCard(shoe.dealCard());
+        hand.addCard(shoe.dealCard());
+
+        System.out.println(hand);
+        System.out.println(hand.calculateScore());
+        System.out.println(hand.isBust());
+
 
     }
 

@@ -1,5 +1,6 @@
 package de.rs.blackjack.model;
 
+import java.util.List;
 
 /**
  * Created by Rene Sommerfeld on 04.03.2018.
@@ -7,12 +8,12 @@ package de.rs.blackjack.model;
  *
  *
  */
-public class Player {
+public class Seat {
 
-    private String name;
+    private List<Hand> hands;
 
-    public Player(String name) {
-        this.name = name;
+    public Seat() {
+
     }
 
 }
