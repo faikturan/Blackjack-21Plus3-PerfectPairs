@@ -7,20 +7,11 @@ public class Test {
 
     public static void main(String[] args) {
 
-        Shoe shoe = new Shoe(1);
+        Shoe shoe = new Shoe(8);
         shoe.create();
         shoe.shuffle();
 
         System.out.println(shoe);
-
-        Hand hand = new Hand();
-        hand.addCard(shoe.dealCard());
-        hand.addCard(shoe.dealCard());
-        hand.addCard(shoe.dealCard());
-
-        System.out.println(hand);
-        System.out.println(hand.calculateScore());
-        System.out.println(hand.isBust());
 
 
     }
