@@ -1,8 +1,7 @@
 package de.rs.blackjack.model;
 
 
-import de.rs.blackjack.model.card.Shoe;
-import de.rs.blackjack.model.hand.PlayerHand;
+import de.rs.blackjack.model.hands.PlayerHand;
 
 /**
  * Created by Rene Sommerfeld on 04.03.2018.

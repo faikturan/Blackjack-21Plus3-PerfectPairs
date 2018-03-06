@@ -1,18 +1,18 @@
-package de.rs.blackjack.model.bet;
+package de.rs.blackjack.model.bets;
 
-import de.rs.blackjack.model.hand.Hand;
+import de.rs.blackjack.model.hands.Hand;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
  *
- * The Bet class represents an abstract bet a player can take.
+ * The Bet class represents an abstract bets a player can take.
  * It keeps track of its amount, whether or not it is won by the
  * player and how much the payout is going to be.
  */
 public abstract class Bet {
 
     /**
-     * all status a bet can have
+     * all status a bets can have
      */
     public enum Status {
         NONE, WON, LOST
@@ -29,13 +29,13 @@ public abstract class Bet {
     protected float payout;
 
     /**
-     * the status of this bet
+     * the status of this bets
      */
     protected Status status;
 
     /**
-     * Creates a new bet with a specified amount
-     * @param amount the amount to bet
+     * Creates a new bets with a specified amount
+     * @param amount the amount to bets
      */
     public Bet(float amount) {
         this.amount = amount;
@@ -43,7 +43,7 @@ public abstract class Bet {
     }
 
     /**
-     * Returns whether or not the bet is won
+     * Returns whether or not the bets is won
      * @return if its won
      */
     public boolean isWon() {
@@ -51,7 +51,7 @@ public abstract class Bet {
     }
 
     /**
-     * Returns whether or not the bet is lost
+     * Returns whether or not the bets is lost
      * @return if its lost
      */
     public boolean isLost() {
@@ -59,7 +59,7 @@ public abstract class Bet {
     }
 
     /**
-     * Returns whether or not the bet is evaluated
+     * Returns whether or not the bets is evaluated
      * @return if its evaluated
      */
     public boolean isEvaluated() {
@@ -67,7 +67,7 @@ public abstract class Bet {
     }
 
     /**
-     * Returns the payout if this bet is evaluated to a winning status
+     * Returns the payout if this bets is evaluated to a winning status
      * @return the payout
      */
     public float payout() {
@@ -79,9 +79,9 @@ public abstract class Bet {
     }
 
     /**
-     * Evaluates the bet.
-     * @param playerHand the hand of the player
-     * @param dealerHand the hand of the dealer
+     * Evaluates the bets.
+     * @param playerHand the hands of the player
+     * @param dealerHand the hands of the dealer
      */
     public abstract void evaluate(Hand playerHand, Hand dealerHand);
 

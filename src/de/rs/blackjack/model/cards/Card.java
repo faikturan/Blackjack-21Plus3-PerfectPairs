@@ -1,4 +1,4 @@
-package de.rs.blackjack.model.card;
+package de.rs.blackjack.model.cards;
 
 /**
  * Created by Rene Sommerfeld on 04.03.2018.

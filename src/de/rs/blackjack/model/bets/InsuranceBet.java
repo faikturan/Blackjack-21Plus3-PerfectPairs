@@ -1,6 +1,6 @@
-package de.rs.blackjack.model.bet;
+package de.rs.blackjack.model.bets;
 
-import de.rs.blackjack.model.hand.Hand;
+import de.rs.blackjack.model.hands.Hand;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
@@ -8,8 +8,8 @@ import de.rs.blackjack.model.hand.Hand;
 public class InsuranceBet extends Bet {
 
     /**
-     * Creates a new bet with a specified amount
-     * @param amount the amount to bet
+     * Creates a new bets with a specified amount
+     * @param amount the amount to bets
      */
     public InsuranceBet(float amount) {
         super(amount);

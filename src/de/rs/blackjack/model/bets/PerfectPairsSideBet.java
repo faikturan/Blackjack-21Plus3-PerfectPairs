@@ -1,7 +1,7 @@
-package de.rs.blackjack.model.bet;
+package de.rs.blackjack.model.bets;
 
-import de.rs.blackjack.model.card.Card;
-import de.rs.blackjack.model.hand.Hand;
+import de.rs.blackjack.model.cards.Card;
+import de.rs.blackjack.model.hands.Hand;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
@@ -9,27 +9,27 @@ import de.rs.blackjack.model.hand.Hand;
 public class PerfectPairsSideBet extends SideBet {
 
     /**
-     * the name of the perfect pair side bet
+     * the name of the perfect pair side bets
      */
     private static final String NAME_PERFECT_PAIR = "Perfect Pair";
     /**
-     * the payout multiplier for a perfect pair side bet
+     * the payout multiplier for a perfect pair side bets
      */
     private static final float PERFECT_PAIR_PAYOUT = 25; // 25 : 1
     /**
-     * the name of the colored pair side bet
+     * the name of the colored pair side bets
      */
     private static final String NAME_COLORED_PAIR = "Colored Pair";
     /**
-     * the payout multiplier for the colored pair side bet
+     * the payout multiplier for the colored pair side bets
      */
     private static final float COLORED_PAIR_PAYOUT = 12; // 12 : 1
     /**
-     * the name of the mixed pair side bet
+     * the name of the mixed pair side bets
      */
     private static final String NAME_MIXED_PAIR = "Mixed Pair";
     /**
-     * the payout multiplier for the mixed pair side bet
+     * the payout multiplier for the mixed pair side bets
      */
     private static final float MIXED_PAIR_PAYOUT = 6; // 6 : 1
 

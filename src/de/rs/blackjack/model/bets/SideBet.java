@@ -1,4 +1,4 @@
-package de.rs.blackjack.model.bet;
+package de.rs.blackjack.model.bets;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.

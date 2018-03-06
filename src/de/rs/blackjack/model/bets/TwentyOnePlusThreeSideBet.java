@@ -1,7 +1,7 @@
-package de.rs.blackjack.model.bet;
+package de.rs.blackjack.model.bets;
 
-import de.rs.blackjack.model.card.Card;
-import de.rs.blackjack.model.hand.Hand;
+import de.rs.blackjack.model.cards.Card;
+import de.rs.blackjack.model.hands.Hand;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,7 +72,7 @@ public class TwentyOnePlusThreeSideBet extends SideBet {
             return;
         }
 
-        //no twenty one plus three side bet condition apply
+        //no twenty one plus three side bets condition apply
         status = Status.LOST;
     }
 

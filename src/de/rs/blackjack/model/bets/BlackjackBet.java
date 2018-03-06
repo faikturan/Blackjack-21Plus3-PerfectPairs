@@ -1,6 +1,6 @@
-package de.rs.blackjack.model.bet;
+package de.rs.blackjack.model.bets;
 
-import de.rs.blackjack.model.hand.Hand;
+import de.rs.blackjack.model.hands.Hand;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
@@ -14,23 +14,23 @@ public class BlackjackBet extends Bet {
 
     /**
      * describes the payout for a normal win against the dealers
-     * hand
+     * hands
      */
     public static final float WINNING_PAYOUT = 1.0f;
 
     /**
-     * Creates a new bet with a specified amount
-     * @param amount the amount to bet
+     * Creates a new bets with a specified amount
+     * @param amount the amount to bets
      */
     public BlackjackBet(float amount) {
         super(amount);
     }
 
     /**
-     * Evaluates the bet of the player by taking a look at the score
-     * of the players hand and the dealers hand.
-     * @param playerHand the hand of the player
-     * @param dealerHand the hand of the dealer
+     * Evaluates the bets of the player by taking a look at the score
+     * of the players hands and the dealers hands.
+     * @param playerHand the hands of the player
+     * @param dealerHand the hands of the dealer
      */
     @Override
     public void evaluate(Hand playerHand, Hand dealerHand) {

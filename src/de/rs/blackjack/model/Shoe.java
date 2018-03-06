@@ -1,9 +1,9 @@
-package de.rs.blackjack.model.card;
+package de.rs.blackjack.model;
 
 
-import de.rs.blackjack.model.card.Card;
-import de.rs.blackjack.model.card.CardDeck;
-import de.rs.blackjack.model.card.CuttingCard;
+import de.rs.blackjack.model.cards.Card;
+import de.rs.blackjack.model.cards.CardDeck;
+import de.rs.blackjack.model.cards.CuttingCard;
 
 import java.util.*;
 

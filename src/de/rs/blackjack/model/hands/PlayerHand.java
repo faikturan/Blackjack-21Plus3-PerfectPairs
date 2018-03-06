@@ -1,11 +1,11 @@
-package de.rs.blackjack.model.hand;
+package de.rs.blackjack.model.hands;
 
-import de.rs.blackjack.model.card.Card;
+import de.rs.blackjack.model.cards.Card;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
  *
- * The PlayerHand class a special kind of hand.
+ * The PlayerHand class a special kind of hands.
  * It is splittable, so if the first two cards are of
  * the same value - a split can be done.
  *
@@ -13,13 +13,13 @@ import de.rs.blackjack.model.card.Card;
 public class PlayerHand extends Hand {
 
     /**
-     * keeps track if this hand is a result
-     * of a splitted hand
+     * keeps track if this hands is a result
+     * of a splitted hands
      */
     private boolean resultOfSplittedHand;
 
     /**
-     * Creates a new player hand
+     * Creates a new player hands
      */
     public PlayerHand() {
         super();
@@ -27,10 +27,10 @@ public class PlayerHand extends Hand {
     }
 
     /**
-     * Creates a new player hand from another splitted
-     * hand
-     * @param resultOfSplittedHand whether or not this hand results from
-     *                             a splitted hand
+     * Creates a new player hands from another splitted
+     * hands
+     * @param resultOfSplittedHand whether or not this hands results from
+     *                             a splitted hands
      */
     private PlayerHand(boolean resultOfSplittedHand) {
         super();
@@ -39,18 +39,18 @@ public class PlayerHand extends Hand {
 
     @Override
     public void addCard(Card card) {
-        //adds the card to the hand
+        //adds the cards to the hands
         super.addCard(card);
 
-        //if this hand is a result of a splitted hand and its first card is an ace
-        //make sure that the hand is only able to draw one card
+        //if this hands is a result of a splitted hands and its first cards is an ace
+        //make sure that the hands is only able to draw one cards
         if(resultOfSplittedHand && Hand.isFirstCardAce(this) && cardsAllowedToDraw > 1) {
             cardsAllowedToDraw = 1;
         }
     }
 
     /**
-     * Returns whether or not the hand can be splitted
+     * Returns whether or not the hands can be splitted
      * @return if a split is possible
      */
     public boolean isSplittable() {
@@ -59,19 +59,19 @@ public class PlayerHand extends Hand {
     }
 
     /**
-     * Splits this hand into another one containing one card of this initial hand.
-     * @return the players new splitted hand, if its not possible to split result will be null
+     * Splits this hands into another one containing one cards of this initial hands.
+     * @return the players new splitted hands, if its not possible to split result will be null
      */
     public PlayerHand split() {
-        //check if this hand is splittable
+        //check if this hands is splittable
         if(isSplittable()) {
             resultOfSplittedHand = true;
-            //if the first card is an ace, both hands should only be able to draw
-            //one another card
+            //if the first cards is an ace, both hands should only be able to draw
+            //one another cards
             if(Hand.isFirstCardAce(this)) {
                 cardsAllowedToDraw = 1;
             }
-            //add one card of this initial hand to the splitted one
+            //add one cards of this initial hands to the splitted one
             PlayerHand splittedHand = new PlayerHand(true);
             splittedHand.addCard(cards.remove(SECOND_CARD));
             return splittedHand;

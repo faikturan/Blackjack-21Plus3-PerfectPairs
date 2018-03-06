@@ -1,15 +1,15 @@
-package de.rs.blackjack.model.hand;
+package de.rs.blackjack.model.hands;
 
-import de.rs.blackjack.model.card.AceCard;
-import de.rs.blackjack.model.card.Card;
-import de.rs.blackjack.model.card.CardDeck;
+import de.rs.blackjack.model.cards.AceCard;
+import de.rs.blackjack.model.cards.Card;
+import de.rs.blackjack.model.cards.CardDeck;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Rene Sommerfeld on 04.03.2018.
- * The Hand class represents an abstract hand of a blackjack game.
+ * The Hand class represents an abstract hands of a blackjack game.
  * It holds the players or dealers cards, keeping track of the total
  * score, and whether or not it is bust, a blackjack or any other event.
  *
@@ -17,32 +17,32 @@ import java.util.List;
 public abstract class Hand implements Comparable<Hand> {
 
     /**
-     * index of the first card
+     * index of the first cards
      */
     public static final int FIRST_CARD = 0;
 
     /**
-     * index of the second card
+     * index of the second cards
      */
     public static final int SECOND_CARD = 1;
 
     /**
-     * initial card count before take decisions
+     * initial cards count before take decisions
      */
     public static final int INITIAL_CARD_COUNT = 2;
 
     /**
-     * perfect hand score
+     * perfect hands score
      */
     public static final int PERFECT_SCORE = 21;
 
     /**
-     * holds all cards of this hand
+     * holds all cards of this hands
      */
     protected List<Card> cards;
 
     /**
-     * describes how many cards this hand is allowed to draw
+     * describes how many cards this hands is allowed to draw
      */
     protected int cardsAllowedToDraw;
 
@@ -53,13 +53,16 @@ public abstract class Hand implements Comparable<Hand> {
 
 
     /**
-     * Adds a card to this hand but only if its allowed
-     * @param card the new card
+     * Adds a cards to this hands but only if its allowed
+     * @param card the new cards
      */
     public void addCard(Card card) {
         if(isAllowedToDraw()) {
             cardsAllowedToDraw--;
             cards.add(card);
+
+            //if the hands is now bust or has a blackjack
+            //don't allow to draw another cards
             if(isBust() || hasBlackjack()) {
                 cardsAllowedToDraw = 0;
             }
@@ -67,7 +70,7 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Returns the actual score of this hand
+     * Returns the actual score of this hands
      * @return the score
      */
     public int score() {
@@ -85,7 +88,7 @@ public abstract class Hand implements Comparable<Hand> {
             }
         }
 
-        //if the perfect score is already exceeded and the hand
+        //if the perfect score is already exceeded and the hands
         //is containing aces, then set every ace if necessary
         //to its low score
         if(score > PERFECT_SCORE && highScoreAceCount > 0) {
@@ -105,7 +108,7 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Returns the number of cards in this hand
+     * Returns the number of cards in this hands
      * @return number of cards
      */
     public int cardCount() {
@@ -113,10 +116,10 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Returns the card on the specified index of this
-     * hand
-     * @param cardIndex the index of the card
-     * @return the card
+     * Returns the cards on the specified index of this
+     * hands
+     * @param cardIndex the index of the cards
+     * @return the cards
      */
     public Card getCard(int cardIndex) {
         if(cardIndex >= 0 && cardIndex < cardCount()) {
@@ -126,7 +129,7 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Returns whether or not this hand is bust
+     * Returns whether or not this hands is bust
      * @return if its bust
      */
     public boolean isBust() {
@@ -134,7 +137,7 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Returns whether or not this hand is allowed to draw another
+     * Returns whether or not this hands is allowed to draw another
      * cards
      * @return if allow to draw
      */
@@ -143,7 +146,7 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Returns whether or not this hand is a blackjack
+     * Returns whether or not this hands is a blackjack
      * @return if its a blackjack
      */
     public boolean hasBlackjack() {
@@ -169,8 +172,8 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Compares this hand against another hand by its score
-     * @param otherHand the other hand
+     * Compares this hands against another hands by its score
+     * @param otherHand the other hands
      * @return the score difference in thus hands
      */
     @Override
@@ -179,10 +182,10 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Helper method. Returns whether or not the first card of the specified hand
+     * Helper method. Returns whether or not the first cards of the specified hands
      * is an ace.
-     * @param hand the hand to check
-     * @return if the first card is an ace
+     * @param hand the hands to check
+     * @return if the first cards is an ace
      */
     public static boolean isFirstCardAce(Hand hand) {
         return hand.getCard(FIRST_CARD).getValue() == CardDeck.Value.ACE;
