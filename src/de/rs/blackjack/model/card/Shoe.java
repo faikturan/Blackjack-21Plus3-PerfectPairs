@@ -1,5 +1,9 @@
-package de.rs.blackjack.model;
+package de.rs.blackjack.model.card;
 
+
+import de.rs.blackjack.model.card.Card;
+import de.rs.blackjack.model.card.CardDeck;
+import de.rs.blackjack.model.card.CuttingCard;
 
 import java.util.*;
 
@@ -10,16 +14,14 @@ import java.util.*;
  */
 public class Shoe {
 
-    public static final int CARDS_PER_DECK = 52;
-
     private int deckCount;
     private boolean shuffled;
 
-    private List<Card> playingStack;
+    private List<Card> stack;
 
 
     public Shoe(int deckCount) {
-        playingStack = new ArrayList<>();
+        stack = new ArrayList<>();
         this.deckCount = deckCount;
         shuffled = false;
         create();
@@ -27,19 +29,15 @@ public class Shoe {
     }
 
     public void create() {
-        playingStack.clear();
+        stack.clear();
         for(int i = 0; i < deckCount; i++) {
-            for(Card.Suit suit : Card.Suit.values()) {
-                for(Card.Value value : Card.Value.values()) {
-                    playingStack.add(new Card(suit, value));
-                }
-            }
+            stack.addAll(new CardDeck());
         }
     }
 
     public void shuffle() {
         if(!shuffled) {
-            Collections.shuffle(playingStack);
+            Collections.shuffle(stack);
             shuffled = true;
         }
     }
@@ -47,19 +45,19 @@ public class Shoe {
     public void placeCuttingCard(int index) {
         int cardCount = cardCount();
         if(shuffled && (index >= 0 && index < cardCount)) {
-            playingStack.set((cardCount - 1) - index, new CuttingCard());
+            stack.set((cardCount - 1) - index, new CuttingCard());
         }
     }
 
-    public Card dealCard() {
+    public Card deal() {
         if(cardCount() == 0) {
             return null;
         }
-        return playingStack.remove(playingStack.size() - 1);
+        return stack.remove(stack.size() - 1);
     }
 
     public int cardCount() {
-        return playingStack.size();
+        return stack.size();
     }
 
 
@@ -70,7 +68,7 @@ public class Shoe {
         for(int i = cardCount - 1; i >= 0; i--) {
             str.append(cardCount - i - 1);
             str.append(":\t");
-            str.append(playingStack.get(i));
+            str.append(stack.get(i));
             str.append("\n");
         }
         return str.toString();
