@@ -49,7 +49,6 @@ public class PlayerBox extends Box {
     }
 
     public void setAvailableDecisionOptions(Hand dealerHand, boolean checkedForBlackjack) {
-
         //clear all previous decision options
         availableDecisions.clear();
 
@@ -82,24 +81,8 @@ public class PlayerBox extends Box {
     @Override
     public void decide(Decision decision) {
         if(availableDecisions.contains(decision)) {
-            switch(decision) {
-                case HIT:
-                    break;
-                case STAND:
-                    break;
-                case SPLIT:
-                    break;
-                case DOUBLE_DOWN:
-                    break;
-                case TAKING_INSURANCE:
-                    //take insurance for main blackjack bet (half amount)
-                    bets[INSURANCE_BET_INDEX] = InsuranceBet.create(bets[BLACKJACK_BET_INDEX]);
-                    break;
-                case DENY_INSURANCE:
-                    //deny insurance set insurance to null
-                    bets[INSURANCE_BET_INDEX] = null;
-                    break;
-            }
+            decisionMade = decision;
+            setDecisionAccepted(true);
         }
     }
 

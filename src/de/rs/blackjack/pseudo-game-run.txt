@@ -1,23 +1,4 @@
+pseudo game run:
 
-- Alle aktiven Boxen setzen ihre Wetten (Blackjack-Wette, Nebenwetten)
 
-- Verteile Karten an jeden Spieler inkl. Dealer zwei Karten
-    - alle Karten der Spieler sind offen, erste Karte des Dealers ebenfalls (zweite Karte verdeckt)
 
-- Ist erste Karte des Dealers ein Ass?
-    - Ja:
-        - jede Box bekommt die Entscheidung die Wette zu versichern
-        - Hat der Dealer einen Blackjack?
-            - Ja:
-                - Hat die Box die Wette versichert?
-                    - Ja: Einsatz zurück durch Versicherungspayout
-                    - Nein: Einsatz und Versicherung verloren
-            - Nein:
-                - Spiel geht weiter [DECISIONS]
-
-    - Nein [DECISIONS]:
-        - Frage jede aktive Box nach Ihrer Entscheidung:
-            - Hat die aktive Box einen Blackjack?
-                - Ja: gehe zur nächsten Box
-                - Nein: Entscheidung [DECISIONS 1]
-            - [DECISIONS 1]
