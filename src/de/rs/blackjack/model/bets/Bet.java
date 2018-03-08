@@ -5,7 +5,7 @@ import de.rs.blackjack.model.hands.Hand;
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
  *
- * The Bet class represents an abstract bets a player can take.
+ * The Bet class represents an abstract bets a player can occupy.
  * It keeps track of its amount, whether or not it is won by the
  * player and how much the payout is going to be.
  */

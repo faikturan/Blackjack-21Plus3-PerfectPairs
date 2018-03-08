@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Rene Sommerfeld on 04.03.2018.
  * The Hand class represents an abstract hands of a blackjack game.
- * It holds the players or dealers cards, keeping track of the total
+ * It holds the table or dealers cards, keeping track of the total
  * score, and whether or not it is bust, a blackjack or any other event.
  *
  */
@@ -27,7 +27,7 @@ public abstract class Hand implements Comparable<Hand> {
     public static final int SECOND_CARD = 1;
 
     /**
-     * initial cards count before take decisions
+     * initial cards count before occupy decisions
      */
     public static final int INITIAL_CARD_COUNT = 2;
 
@@ -55,18 +55,26 @@ public abstract class Hand implements Comparable<Hand> {
     /**
      * Adds a cards to this hands but only if its allowed
      * @param card the new cards
+     * @return returns whether or not the card is added
      */
-    public void addCard(Card card) {
+    public boolean addCard(Card card) {
         if(isAllowedToDraw()) {
             cardsAllowedToDraw--;
             cards.add(card);
 
-            //if the hands is now bust or has a blackjack
+            //if the hands is now bust or has a blackjack or card count is perfect
             //don't allow to draw another cards
-            if(isBust() || hasBlackjack()) {
+            if(isBust() || hasBlackjack() || score() == PERFECT_SCORE) {
                 cardsAllowedToDraw = 0;
             }
+
+            return true;
         }
+        return false;
+    }
+
+    public void clear() {
+        cards.clear();
     }
 
     /**
@@ -88,7 +96,7 @@ public abstract class Hand implements Comparable<Hand> {
             }
         }
 
-        //if the perfect score is already exceeded and the hands
+        //if the perfect score is already exceeded and the hand
         //is containing aces, then set every ace if necessary
         //to its low score
         if(score > PERFECT_SCORE && highScoreAceCount > 0) {

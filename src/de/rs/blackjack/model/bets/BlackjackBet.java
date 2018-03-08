@@ -26,14 +26,9 @@ public class BlackjackBet extends Bet {
         super(amount);
     }
 
-    /**
-     * Evaluates the bets of the player by taking a look at the score
-     * of the players hands and the dealers hands.
-     * @param playerHand the hands of the player
-     * @param dealerHand the hands of the dealer
-     */
     @Override
     public void evaluate(Hand playerHand, Hand dealerHand) {
+        //TODO : adding the case of a hand is already bust
         if(playerHand.hasBlackjack() && !dealerHand.hasBlackjack()) {
             status = Status.WON;
             payout = amount * BLACKJACK_PAYOUT + amount;

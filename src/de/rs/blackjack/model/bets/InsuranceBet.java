@@ -8,6 +8,11 @@ import de.rs.blackjack.model.hands.Hand;
 public class InsuranceBet extends Bet {
 
     /**
+     * the payout multiplier for an insurance bet
+     */
+    public static final float INSURANCE_PAYOUT = 2.0f;
+
+    /**
      * Creates a new bets with a specified amount
      * @param amount the amount to bets
      */
@@ -17,6 +22,11 @@ public class InsuranceBet extends Bet {
 
     @Override
     public void evaluate(Hand playerHand, Hand dealerHand) {
-
+        if(dealerHand.hasBlackjack()) {
+            status = Status.WON;
+            payout = amount * INSURANCE_PAYOUT + amount;
+        } else {
+            status = Status.LOST;
+        }
     }
 }

@@ -1,6 +1,7 @@
 package de.rs.blackjack.model.hands;
 
 import de.rs.blackjack.model.cards.Card;
+import de.rs.blackjack.model.table.Player;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
@@ -60,7 +61,7 @@ public class PlayerHand extends Hand {
 
     /**
      * Splits this hands into another one containing one cards of this initial hands.
-     * @return the players new splitted hands, if its not possible to split result will be null
+     * @return the table new splitted hands, if its not possible to split result will be null
      */
     public PlayerHand split() {
         //check if this hands is splittable
