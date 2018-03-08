@@ -42,6 +42,10 @@ public abstract class Bet {
         this.status = Status.NONE;
     }
 
+    public float getAmount() {
+        return amount;
+    }
+
     /**
      * Returns whether or not the bets is won
      * @return if its won

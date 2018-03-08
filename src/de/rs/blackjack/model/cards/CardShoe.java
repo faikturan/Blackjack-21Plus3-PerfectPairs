@@ -7,10 +7,10 @@ import java.util.*;
 /**
  * Created by Rene Sommerfeld on 04.03.2018.
  *
- * The Shoe class holds all playing cards of the
+ * The CardShoe class holds all playing cards of the
  * game.
  */
-public class Shoe {
+public class CardShoe {
 
     /**
      * the number of card decks to play with
@@ -32,7 +32,7 @@ public class Shoe {
      * Creates a new shoe with a specified number of card decks
      * @param deckCount the number of card decks
      */
-    public Shoe(int deckCount) {
+    public CardShoe(int deckCount) {
         stack = new ArrayList<>();
         this.deckCount = deckCount;
         shuffled = false;
@@ -102,8 +102,8 @@ public class Shoe {
     public String toString() {
         StringBuilder str = new StringBuilder();
         int cardCount = cardCount();
-        for(int i = cardCount - 1; i >= 0; i--) {
-            str.append(cardCount - i - 1);
+        for(int i = 0; i < cardCount; i++) {
+            str.append((i + 1));
             str.append(":\t");
             str.append(stack.get(i));
             str.append("\n");

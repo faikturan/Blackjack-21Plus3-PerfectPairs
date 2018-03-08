@@ -39,15 +39,17 @@ public class PlayerHand extends Hand {
     }
 
     @Override
-    public void addCard(Card card) {
+    public boolean addCard(Card card) {
         //adds the cards to the hands
-        super.addCard(card);
+        boolean added = super.addCard(card);
 
         //if this hands is a result of a splitted hands and its first cards is an ace
         //make sure that the hands is only able to draw one cards
         if(resultOfSplittedHand && Hand.isFirstCardAce(this) && cardsAllowedToDraw > 1) {
             cardsAllowedToDraw = 1;
         }
+
+        return added;
     }
 
     /**

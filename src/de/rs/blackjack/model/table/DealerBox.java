@@ -36,8 +36,7 @@ public class DealerBox extends Box {
     }
 
     @Override
-    public boolean decide(Decision decision) {
-        return true;
+    public void decide(Decision decision) {
     }
 
     @Override

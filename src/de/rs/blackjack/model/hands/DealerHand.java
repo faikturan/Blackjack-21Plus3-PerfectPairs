@@ -22,11 +22,12 @@ public class DealerHand extends Hand {
     }
 
     @Override
-    public void addCard(Card card) {
-        super.addCard(card);
+    public boolean addCard(Card card) {
+        boolean added = super.addCard(card);
         if(score() >= STANDS_ON_SCORE) {
             cardsAllowedToDraw = 0;
         }
+        return added;
     }
 
 }

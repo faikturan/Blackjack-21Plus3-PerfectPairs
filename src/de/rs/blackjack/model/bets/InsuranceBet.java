@@ -29,4 +29,9 @@ public class InsuranceBet extends Bet {
             status = Status.LOST;
         }
     }
+
+    public static InsuranceBet create(Bet blackjackBet) {
+        return new InsuranceBet(blackjackBet.getAmount() * 0.5f);
+    }
+
 }

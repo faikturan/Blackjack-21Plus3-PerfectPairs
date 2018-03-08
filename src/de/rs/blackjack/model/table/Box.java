@@ -17,12 +17,6 @@ public abstract class Box {
     public static final int MAX_HAND_COUNT = 2;
 
     /**
-     * the min score that allows a double down
-     */
-    public static final int DOUBLE_DOWN_MIN_SCORE = 9;
-
-
-    /**
      * all available decisions for a box
      */
     public enum Decision {
@@ -82,7 +76,7 @@ public abstract class Box {
     }
 
     public abstract void clear();
-    public abstract boolean decide(Decision decision);
+    public abstract void decide(Decision decision);
     protected abstract boolean addCardToActiveHand(Card newCard);
 
     public User getUser() {
