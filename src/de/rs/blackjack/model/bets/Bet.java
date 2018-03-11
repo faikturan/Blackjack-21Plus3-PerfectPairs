@@ -5,74 +5,63 @@ import de.rs.blackjack.model.hands.Hand;
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
  *
- * The Bet class represents an abstract bets a player can occupy.
- * It keeps track of its amount, whether or not it is won by the
- * player and how much the payout is going to be.
+ * Die Bet Klasse repräsentiert eine abstrakte Wette die
+ * ein Spieler an einer Box platzieren kann. Wenn eine Wette ausgewertet
+ * wird, verfügt sie über einen entsprechenden Status der markiert ob
+ * sie gewonnen oder verloren wurde.
  */
 public abstract class Bet {
 
     /**
-     * all status a bets can have
+     * alle Status die eine Wette haben kann
      */
     public enum Status {
         NONE, WON, LOST
     }
 
     /**
-     * the amount a player bets
+     * gibt den Wert der Wette an
      */
     protected float amount;
 
     /**
-     * the payout if the player wins
+     * gibt im Falle eines Gewinns die Auszahlung an
      */
     protected float payout;
 
     /**
-     * the status of this bets
+     * gibt den aktuellen Status der Wette an
      */
     protected Status status;
 
     /**
-     * Creates a new bets with a specified amount
-     * @param amount the amount to bets
+     * Erzeugt eine neue Wette von einem festgelegten Wert
+     * @param amount den Wert der Wette
      */
     public Bet(float amount) {
         this.amount = amount;
         this.status = Status.NONE;
     }
 
+    /**
+     * Gibt den Wert der Wette zurück
+     * @return den Wert
+     */
     public float getAmount() {
         return amount;
     }
 
     /**
-     * Returns whether or not the bets is won
-     * @return if its won
+     * Gibt den Status der Wette zurück
+     * @return den Status
      */
-    public boolean isWon() {
-        return status == Status.WON;
+    public Status getStatus() {
+        return status;
     }
 
     /**
-     * Returns whether or not the bets is lost
-     * @return if its lost
-     */
-    public boolean isLost() {
-        return status == Status.LOST;
-    }
-
-    /**
-     * Returns whether or not the bets is evaluated
-     * @return if its evaluated
-     */
-    public boolean isEvaluated() {
-        return status != Status.NONE;
-    }
-
-    /**
-     * Returns the payout if this bets is evaluated to a winning status
-     * @return the payout
+     * Gibt die Auszahlung der Wette zurück
+     * @return die Auszahlung der Wette
      */
     public float payout() {
         if(status == Status.NONE || status == Status.LOST) {
@@ -83,9 +72,10 @@ public abstract class Bet {
     }
 
     /**
-     * Evaluates the bets.
-     * @param playerHand the hands of the player
-     * @param dealerHand the hands of the dealer
+     * Wertet die Wette unter der Begutachtung der Spielerhand und
+     * der Dealerhand aus.
+     * @param playerHand die Hand des Spielers
+     * @param dealerHand die Hand des Dealers
      */
     public abstract void evaluate(Hand playerHand, Hand dealerHand);
 

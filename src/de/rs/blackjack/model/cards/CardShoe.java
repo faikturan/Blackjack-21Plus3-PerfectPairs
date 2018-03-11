@@ -66,11 +66,12 @@ public class CardShoe {
      * Places the cutting card at the specified index
      * of the card stack
      * @param index the index to place the cutting card at
+     * @param card the card to place
      */
-    public void placeCuttingCard(int index) {
+    public void placeCuttingCard(int index, Card card) {
         int cardCount = cardCount();
         if(shuffled && (index >= 0 && index < cardCount)) {
-            stack.set(index, new CuttingCard());
+            stack.set(index, card);
         }
     }
 

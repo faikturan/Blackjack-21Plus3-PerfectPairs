@@ -41,36 +41,19 @@ public abstract class Hand implements Comparable<Hand> {
      */
     protected List<Card> cards;
 
-    /**
-     * describes how many cards this hands is allowed to draw
-     */
-    protected int cardsAllowedToDraw;
 
     public Hand() {
         cards = new ArrayList<>();
-        cardsAllowedToDraw = Integer.MAX_VALUE;
     }
 
 
     /**
-     * Adds a cards to this hands but only if its allowed
-     * @param card the new cards
+     * Adds a card to this hands
+     * @param card the new card
      * @return returns whether or not the card is added
      */
     public boolean addCard(Card card) {
-        if(isAllowedToDraw()) {
-            cardsAllowedToDraw--;
-            cards.add(card);
-
-            //if the hands is now bust or has a blackjack or card count is perfect
-            //don't allow to draw another cards
-            if(isBust() || hasBlackjack() || score() == PERFECT_SCORE) {
-                cardsAllowedToDraw = 0;
-            }
-
-            return true;
-        }
-        return false;
+        return cards.add(card);
     }
 
     public void clear() {
@@ -123,6 +106,7 @@ public abstract class Hand implements Comparable<Hand> {
         return cards.size();
     }
 
+
     /**
      * Returns the cards on the specified index of this
      * hands
@@ -142,15 +126,6 @@ public abstract class Hand implements Comparable<Hand> {
      */
     public boolean isBust() {
         return score() > PERFECT_SCORE;
-    }
-
-    /**
-     * Returns whether or not this hands is allowed to draw another
-     * cards
-     * @return if allow to draw
-     */
-    public boolean isAllowedToDraw() {
-        return cardsAllowedToDraw > 0;
     }
 
     /**
@@ -174,7 +149,6 @@ public abstract class Hand implements Comparable<Hand> {
         }
         str.append("####################").append("\n");
         str.append("Score:\t").append(score()).append("\n");
-        str.append("Cards Allowed To Draw:\t").append(cardsAllowedToDraw).append("\n");
         str.append("Is Hand Bust:\t").append(isBust());
         return str.toString();
     }
@@ -199,6 +173,23 @@ public abstract class Hand implements Comparable<Hand> {
         return hand.getCard(FIRST_CARD).getValue() == CardDeck.Value.ACE;
     }
 
+
+    public static Card initialFirstCard(Hand hand) {
+        return initialCard(hand, FIRST_CARD);
+    }
+
+    public static Card initialSecondCard(Hand hand) {
+        return initialCard(hand, SECOND_CARD);
+    }
+
+    private static Card initialCard(Hand hand, int index) {
+        if(hand != null) {
+            if(hand.cardCount() >= index + 1) {
+                return hand.getCard(index);
+            }
+        }
+        return null;
+    }
 
 
 }

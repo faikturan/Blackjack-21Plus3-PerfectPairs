@@ -1,7 +1,5 @@
 package de.rs.blackjack.model.hands;
 
-import de.rs.blackjack.model.cards.Card;
-
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
  *
@@ -12,22 +10,8 @@ import de.rs.blackjack.model.cards.Card;
  */
 public class DealerHand extends Hand {
 
-    /**
-     * the score to stand on if it is reached
-     */
-    public static final int STANDS_ON_SCORE = 17;
-
     public DealerHand() {
 
-    }
-
-    @Override
-    public boolean addCard(Card card) {
-        boolean added = super.addCard(card);
-        if(score() >= STANDS_ON_SCORE) {
-            cardsAllowedToDraw = 0;
-        }
-        return added;
     }
 
 }

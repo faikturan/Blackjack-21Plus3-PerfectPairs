@@ -7,10 +7,12 @@ public abstract class Card implements Comparable<Card> {
 
     protected CardDeck.Suit suit;
     protected CardDeck.Value value;
+    private boolean flipped;
 
     public Card(CardDeck.Suit suit, CardDeck.Value value) {
         this.suit = suit;
         this.value = value;
+        flipped = false;
     }
 
     public CardDeck.Suit getSuit() {
@@ -19,6 +21,10 @@ public abstract class Card implements Comparable<Card> {
 
     public CardDeck.Value getValue() {
         return value;
+    }
+
+    public boolean isFlipped() {
+        return flipped;
     }
 
     public abstract int score();
@@ -60,9 +66,29 @@ public abstract class Card implements Comparable<Card> {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append(suit.getCharacter());
-        str.append(" ");
-        str.append(value.getCharacter());
+        if(!flipped) {
+            str.append(suit.getCharacter());
+            str.append(" ");
+            str.append(value.getCharacter());
+        } else {
+            str.append("[HIDDEN]");
+        }
         return str.toString();
     }
+
+    public static Card putFaceDown(Card card) {
+        if(!card.isFlipped()) {
+            card.flipped = true;
+        }
+        return card;
+    }
+
+    public static Card putFaceUp(Card card) {
+        if(card.isFlipped()) {
+            card.flipped = false;
+        }
+        return card;
+    }
+
+
 }
