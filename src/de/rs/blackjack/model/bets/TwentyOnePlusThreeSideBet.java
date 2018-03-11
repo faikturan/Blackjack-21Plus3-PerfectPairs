@@ -38,27 +38,50 @@ public class TwentyOnePlusThreeSideBet extends SideBet {
      * Name der Suited Trips Nebenwette
      */
     private static final String NAME_SUITED_TRIPS = "Suited Trips";
+
+    /**
+     * die Auszahlungsquote der Suited Trips Nebenwette
+     */
     private static final float SUITED_TRIPS_PAYOUT = 100; // 100 : 1
+
     /**
      * Name der Straight Flush Nebenwette
      */
     private static final String NAME_STRAIGHT_FLUSH = "Straight Flush";
+
+    /**
+     * die Auszahlungsquote der Straight Flush Nebenwette
+     */
     private static final float STRAIGHT_FLUSH_PAYOUT = 40; // 40 : 1
+
     /**
      * Name der Trips Nebenwette
      */
     private static final String NAME_TRIPS = "Trips";
+
+    /**
+     * die Auszahlungsquote der Trips Nebenwette
+     */
     private static final float TRIPS_PAYOUT = 30; // 30 : 1
 
     /**
      * Name der Straight Nebenwette
      */
     private static final String NAME_STRAIGHT = "Straight";
+
+    /**
+     * die Auszahlungsquote der Straight Nebenwette
+     */
     private static final float STRAIGHT_PAYOUT = 10; // 10 : 1
+
     /**
      * Name der Flush Nebenwette
      */
     private static final String NAME_FLUSH = "Flush";
+
+    /**
+     * die Auszahlungsquote der Flush Nebenwette
+     */
     private static final float FLUSH_PAYOUT = 5; // 5 : 1
 
     public TwentyOnePlusThreeSideBet(float amount) {
