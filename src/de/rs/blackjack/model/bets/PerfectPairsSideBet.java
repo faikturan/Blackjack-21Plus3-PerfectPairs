@@ -65,14 +65,14 @@ public class PerfectPairsSideBet extends SideBet {
         Card playerFirstCard = Hand.initialFirstCard(playerHand);
         Card playerSecondCard = Hand.initialSecondCard(playerHand);
 
-        if(playerFirstCard.matchesValue(playerSecondCard)) {
-            if(playerFirstCard.matchesSuit(playerSecondCard)) {
+        if(Card.Matcher.matchesValue(playerFirstCard, playerSecondCard)) {
+            if(Card.Matcher.matchesSuit(playerFirstCard, playerSecondCard)) {
                 //perfect pair condition
                 status = Status.WON;
                 payout = amount * PERFECT_PAIR_PAYOUT + amount;
                 setName(NAME_PERFECT_PAIR);
             } else {
-                if(playerFirstCard.matchesColor(playerSecondCard)) {
+                if(Card.Matcher.matchesColor(playerFirstCard, playerSecondCard)) {
                     //colored pair condition
                     status = Status.WON;
                     payout = amount * COLORED_PAIR_PAYOUT + amount;

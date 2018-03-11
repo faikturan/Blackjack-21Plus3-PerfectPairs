@@ -1,29 +1,33 @@
-package de.rs.blackjack.model.cards;
+package de.rs.blackjack.model.table;
 
 
+
+import de.rs.blackjack.model.cards.Card;
+import de.rs.blackjack.model.cards.CardDeck;
 
 import java.util.*;
 
 /**
  * Created by Rene Sommerfeld on 04.03.2018.
  *
- * The CardShoe class holds all playing cards of the
- * game.
+ * Die CardShoe Klasse repräsentiert den Kartenschuh in dem
+ * sich die Kartendecks befinden. Ein Kartenschuh kann mit beliebig
+ * vielen Kartendecks (meist aber 6 - 8 Kartendecks) gefüllt werden.
  */
 public class CardShoe {
 
     /**
-     * the number of card decks to play with
+     * Anzahl an Kartendecks im Kartenschuh
      */
     private int deckCount;
 
     /**
-     * describes if the cards in the shoe are shuffled
+     * gibt an ob die Karten im Kartenschuh gemischt worden sind
      */
     private boolean shuffled;
 
     /**
-     * the stack
+     * der Kartenstapel
      */
     private List<Card> stack;
 
@@ -33,15 +37,15 @@ public class CardShoe {
      * @param deckCount the number of card decks
      */
     public CardShoe(int deckCount) {
-        stack = new ArrayList<>();
+        stack = new ArrayList<>(deckCount *
+                CardDeck.Value.values().length * CardDeck.Suit.values().length);
         this.deckCount = deckCount;
         shuffled = false;
         populateCards();
     }
 
     /**
-     * Populates the shoe with the specified number of
-     * card decks.
+     * Befüllt den Kartenschuh mit der angegebenen Anzahl von Kartendecks
      */
     public void populateCards() {
         //if shoe is already populated with cards, remove all
@@ -53,7 +57,7 @@ public class CardShoe {
     }
 
     /**
-     * Shuffles the shoe
+     * Mischt die Karten im Kartenschuh
      */
     public void shuffle() {
         if(!shuffled) {
@@ -63,10 +67,11 @@ public class CardShoe {
     }
 
     /**
-     * Places the cutting card at the specified index
-     * of the card stack
-     * @param index the index to place the cutting card at
-     * @param card the card to place
+     * Platziert die Cutting Card an einer bestimmten Stelle im Stapel.
+     * Die Cutting Card markiert die Stelle an der ein Schuhwechsel gemacht
+     * werden muss.
+     * @param index der Index an dem die Cutting Card platziert werden soll
+     * @param card die zu platzierende Cutting Card
      */
     public void placeCuttingCard(int index, Card card) {
         int cardCount = cardCount();
@@ -76,8 +81,8 @@ public class CardShoe {
     }
 
     /**
-     * Deals the top card of the stack
-     * @return the top card, otherwise null
+     * Gibt die oberste Karte aus dem Schuh zurück
+     * @return oberste Karte, ansonsten null
      */
     public Card dealCard() {
         if(cardCount() != 0) {
@@ -87,8 +92,8 @@ public class CardShoe {
     }
 
     /**
-     * Returns the number of cards remaining
-     * @return the number of cards
+     * Gibt die verbleibene Anzahl von Karten im Schuh zurück
+     * @return verbleibene Kartenanzahl
      */
     public int cardCount() {
         return stack.size();
@@ -96,8 +101,8 @@ public class CardShoe {
 
 
     /**
-     * Returns a string representation of the shoe
-     * @return string representation
+     * Gibt eine String Repräsentation des Schuhs zurück
+     * @return String Repräsentation des Schuhs
      */
     @Override
     public String toString() {

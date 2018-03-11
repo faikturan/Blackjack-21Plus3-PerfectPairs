@@ -1,5 +1,7 @@
 package de.rs.blackjack.model.hands;
 
+import de.rs.blackjack.model.cards.Card;
+
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
  *
@@ -41,7 +43,9 @@ public class PlayerHand extends Hand {
      */
     public boolean isSplittable() {
         return !resultOfSplittedHand && cardCount() == INITIAL_CARD_COUNT &&
-                cards.get(0).matchesValue(cards.get(1));
+                Card.Matcher.matchesValue(
+                        Hand.initialFirstCard(this),
+                        Hand.initialSecondCard(this));
     }
 
     /**

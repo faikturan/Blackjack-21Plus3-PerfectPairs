@@ -1,7 +1,7 @@
 package de.rs.blackjack.model;
 
 import de.rs.blackjack.model.cards.Card;
-import de.rs.blackjack.model.cards.CardShoe;
+import de.rs.blackjack.model.table.CardShoe;
 import de.rs.blackjack.model.cards.CuttingCard;
 import de.rs.blackjack.model.hands.Hand;
 import de.rs.blackjack.model.table.Box;

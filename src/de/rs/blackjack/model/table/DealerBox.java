@@ -52,7 +52,7 @@ public class DealerBox extends Box {
 
         //if the initial cards are drawn
         if(cardCount >= Hand.INITIAL_CARD_COUNT) {
-            //the dealer has to hit if the score is below the score
+            //the dealer has to hit if the getScore is below the getScore
             //to stand on
             if(score < STAND_ON_SCORE) {
                 availableNextDecisions.add(Decision.FORCED_HIT);

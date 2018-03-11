@@ -54,13 +54,13 @@ public class PlayerBox extends Box {
         //clear all previous available next decisions
         availableNextDecisions.clear();
 
-        //get current card count and score of the players hand
+        //get current card count and getScore of the players hand
         PlayerHand playerHand = (PlayerHand)currentActiveHand;
         int cardCount = playerHand.cardCount();
         int score = playerHand.score();
 
         if(cardCount >= Hand.INITIAL_CARD_COUNT) {
-            //if the player has a blackjack or perfect score or is bust
+            //if the player has a blackjack or perfect getScore or is bust
             //the player is forced to stand
             if(playerHand.hasBlackjack() || score == Hand.PERFECT_SCORE || playerHand.isBust()) {
                 availableNextDecisions.add(Decision.FORCED_STAND);
@@ -74,7 +74,7 @@ public class PlayerBox extends Box {
                     availableNextDecisions.add(Decision.SPLIT);
                 }
 
-                //if the player hand has a min double down score
+                //if the player hand has a min double down getScore
                 //add double down as decision
                 if(score >= MIN_DOUBLE_DOWN_SCORE) {
                     availableNextDecisions.add(Decision.DOUBLE_DOWN);

@@ -101,7 +101,7 @@ public class TwentyOnePlusThreeSideBet extends SideBet {
         Card dealerOpenCard = dealerHand.getCard(0);
 
         //suited trips
-        if(playerFirstCard.matches(playerSecondCard) && playerSecondCard.matches(dealerOpenCard)) {
+        if(Card.Matcher.matches(playerFirstCard, playerSecondCard, dealerOpenCard)) {
             status = Status.WON;
             payout = amount * SUITED_TRIPS_PAYOUT + amount;
             setName(NAME_SUITED_TRIPS);
@@ -121,7 +121,7 @@ public class TwentyOnePlusThreeSideBet extends SideBet {
         }
 
         //trips
-        if(playerFirstCard.matchesValue(playerSecondCard) && playerSecondCard.matchesValue(dealerOpenCard)) {
+        if(Card.Matcher.matchesValue(playerFirstCard, playerSecondCard, dealerOpenCard)) {
             status = Status.WON;
             payout = amount * TRIPS_PAYOUT + amount;
             setName(NAME_TRIPS);
@@ -159,7 +159,7 @@ public class TwentyOnePlusThreeSideBet extends SideBet {
      * @return gibt zurück ob es sich um einen Flush hält oder nicht
      */
     private boolean checkFlush(Card playerFirstCard, Card playerSecondCard, Card dealerOpenCard) {
-        return playerFirstCard.matchesSuit(playerSecondCard) && playerSecondCard.matchesSuit(dealerOpenCard);
+        return Card.Matcher.matchesSuit(playerFirstCard, playerSecondCard, dealerOpenCard);
     }
 
     /**
@@ -183,7 +183,7 @@ public class TwentyOnePlusThreeSideBet extends SideBet {
 
         //überprüfen ob die jeweils benachbarten Karten in der Liste fortlaufend sind
         for(int i = 0; i < cards.size() - 1; i++) {
-            if(cards.get(i).compareTo(cards.get(i + 1)) != -1) {
+            if(!Card.Matcher.isConsecutive(cards.get(i), cards.get(i + 1))) {
                 //es handelt sich nicht um drei fortlaufende Karten
                 return false;
             }

@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Rene Sommerfeld on 04.03.2018.
  * The Hand class represents an abstract hands of a blackjack game.
  * It holds the table or dealers cards, keeping track of the total
- * score, and whether or not it is bust, a blackjack or any other event.
+ * getScore, and whether or not it is bust, a blackjack or any other event.
  *
  */
 public abstract class Hand implements Comparable<Hand> {
@@ -32,7 +32,7 @@ public abstract class Hand implements Comparable<Hand> {
     public static final int INITIAL_CARD_COUNT = 2;
 
     /**
-     * perfect hands score
+     * perfect hands getScore
      */
     public static final int PERFECT_SCORE = 21;
 
@@ -61,16 +61,15 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Returns the actual score of this hands
-     * @return the score
+     * Returns the actual getScore of this hands
+     * @return the getScore
      */
     public int score() {
         int highScoreAceCount = 0;
         int score = 0;
 
-        //scoring of all cards
         for(Card card : cards) {
-            score += card.score();
+            score += card.getScore();
             if(card instanceof AceCard) {
                 AceCard ace = (AceCard)card;
                 if(!ace.isLowScore()) {
@@ -79,9 +78,7 @@ public abstract class Hand implements Comparable<Hand> {
             }
         }
 
-        //if the perfect score is already exceeded and the hand
-        //is containing aces, then set every ace if necessary
-        //to its low score
+
         if(score > PERFECT_SCORE && highScoreAceCount > 0) {
             for(int i = cards.size() - 1; i >= 0; i--) {
                 Card card = cards.get(i);
@@ -154,9 +151,9 @@ public abstract class Hand implements Comparable<Hand> {
     }
 
     /**
-     * Compares this hands against another hands by its score
+     * Compares this hands against another hands by its getScore
      * @param otherHand the other hands
-     * @return the score difference in thus hands
+     * @return the getScore difference in thus hands
      */
     @Override
     public int compareTo(Hand otherHand) {
