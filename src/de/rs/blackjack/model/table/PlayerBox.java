@@ -1,7 +1,6 @@
 package de.rs.blackjack.model.table;
 
 import de.rs.blackjack.model.bets.*;
-import de.rs.blackjack.model.cards.Card;
 import de.rs.blackjack.model.hands.DealerHand;
 import de.rs.blackjack.model.hands.Hand;
 import de.rs.blackjack.model.hands.PlayerHand;
@@ -56,7 +55,7 @@ public class PlayerBox extends Box {
 
         //get current card count and getScore of the players hand
         PlayerHand playerHand = (PlayerHand)currentActiveHand;
-        int cardCount = playerHand.cardCount();
+        int cardCount = playerHand.getCardCount();
         int score = playerHand.score();
 
         if(cardCount >= Hand.INITIAL_CARD_COUNT) {
@@ -133,10 +132,14 @@ public class PlayerBox extends Box {
     }
 
     private boolean takeInsurance() {
-        if(bets[BLACKJACK_BET_INDEX] != null) {
-            return addBet(InsuranceBet.create(bets[BLACKJACK_BET_INDEX]), INSURANCE_BET_INDEX);
+        if(hasBlackjackBetPlaced()) {
+            return addBet(new InsuranceBet((BlackjackBet)bets[BLACKJACK_BET_INDEX]), INSURANCE_BET_INDEX);
         }
         return false;
+    }
+
+    public boolean hasBlackjackBetPlaced() {
+        return bets[BLACKJACK_BET_INDEX] != null;
     }
 
 }

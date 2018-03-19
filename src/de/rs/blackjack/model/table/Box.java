@@ -4,9 +4,7 @@ import de.rs.blackjack.model.cards.Card;
 import de.rs.blackjack.model.hands.Hand;
 import de.rs.blackjack.model.user.User;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -34,11 +32,11 @@ public abstract class Box {
     protected int currentActiveHandIndex;
     protected Hand[] hands;
 
-    protected List<Decision> availableNextDecisions;
+    protected Set<Decision> availableNextDecisions;
     protected Decision nextDecision;
 
     public Box() {
-        availableNextDecisions = new ArrayList<>();
+        availableNextDecisions = new HashSet<>();
     }
 
     public abstract void occupy(User user);
@@ -69,12 +67,16 @@ public abstract class Box {
         return nextDecision;
     }
 
-    public List<Decision> getAvailableNextDecisions() {
+    public Set<Decision> getAvailableNextDecisions() {
         return availableNextDecisions;
     }
 
     public boolean hasMadeNextDecision() {
         return nextDecision != null;
+    }
+
+    public Hand[] getHands() {
+        return hands;
     }
 
     @Override

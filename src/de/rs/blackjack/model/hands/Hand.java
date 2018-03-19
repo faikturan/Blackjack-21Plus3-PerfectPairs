@@ -16,6 +16,9 @@ import java.util.List;
  */
 public abstract class Hand implements Comparable<Hand> {
 
+    public static final String SCORE_STRING_BUST = "BU";
+    public static final String SCORE_STRING_BLACKJACK = "BJ";
+
     /**
      * index of the first cards
      */
@@ -69,11 +72,13 @@ public abstract class Hand implements Comparable<Hand> {
         int score = 0;
 
         for(Card card : cards) {
-            score += card.getScore();
-            if(card instanceof AceCard) {
-                AceCard ace = (AceCard)card;
-                if(!ace.isLowScore()) {
-                    highScoreAceCount++;
+            if(!card.isFlipped()) {
+                score += card.getScore();
+                if (card instanceof AceCard) {
+                    AceCard ace = (AceCard) card;
+                    if (!ace.isLowScore()) {
+                        highScoreAceCount++;
+                    }
                 }
             }
         }
@@ -99,7 +104,7 @@ public abstract class Hand implements Comparable<Hand> {
      * Returns the number of cards in this hands
      * @return number of cards
      */
-    public int cardCount() {
+    public int getCardCount() {
         return cards.size();
     }
 
@@ -111,7 +116,7 @@ public abstract class Hand implements Comparable<Hand> {
      * @return the cards
      */
     public Card getCard(int cardIndex) {
-        if(cardIndex >= 0 && cardIndex < cardCount()) {
+        if(cardIndex >= 0 && cardIndex < getCardCount()) {
             return cards.get(cardIndex);
         }
         return null;
@@ -130,14 +135,14 @@ public abstract class Hand implements Comparable<Hand> {
      * @return if its a blackjack
      */
     public boolean hasBlackjack() {
-        return cardCount() == INITIAL_CARD_COUNT && score() == PERFECT_SCORE;
+        return getCardCount() == INITIAL_CARD_COUNT && score() == PERFECT_SCORE;
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("\n");
-        str.append("Card Count:\t").append(cardCount()).append("\n");
+        str.append("Card Count:\t").append(getCardCount()).append("\n");
         str.append("####################");
         str.append("\n");
         for(Card card : cards) {
@@ -148,6 +153,18 @@ public abstract class Hand implements Comparable<Hand> {
         str.append("Score:\t").append(score()).append("\n");
         str.append("Is Hand Bust:\t").append(isBust());
         return str.toString();
+    }
+
+    public String getScoreString() {
+        if(!isBust()) {
+            if(hasBlackjack()) {
+                return SCORE_STRING_BLACKJACK;
+            } else {
+                return String.valueOf(score());
+            }
+        } else {
+            return SCORE_STRING_BUST;
+        }
     }
 
     /**
@@ -181,7 +198,7 @@ public abstract class Hand implements Comparable<Hand> {
 
     private static Card initialCard(Hand hand, int index) {
         if(hand != null) {
-            if(hand.cardCount() >= index + 1) {
+            if(hand.getCardCount() >= index + 1) {
                 return hand.getCard(index);
             }
         }

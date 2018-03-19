@@ -42,7 +42,7 @@ public class PlayerHand extends Hand {
      * @return if a split is possible
      */
     public boolean isSplittable() {
-        return !resultOfSplittedHand && cardCount() == INITIAL_CARD_COUNT &&
+        return !resultOfSplittedHand && getCardCount() == INITIAL_CARD_COUNT &&
                 Card.Matcher.matchesValue(
                         Hand.initialFirstCard(this),
                         Hand.initialSecondCard(this));

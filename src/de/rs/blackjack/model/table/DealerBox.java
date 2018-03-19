@@ -3,8 +3,6 @@ package de.rs.blackjack.model.table;
 import de.rs.blackjack.model.cards.Card;
 import de.rs.blackjack.model.hands.DealerHand;
 import de.rs.blackjack.model.hands.Hand;
-import de.rs.blackjack.model.hands.PlayerHand;
-import de.rs.blackjack.model.user.Dealer;
 import de.rs.blackjack.model.user.User;
 
 /**
@@ -30,7 +28,7 @@ public class DealerBox extends Box {
     public boolean addCard(Card card) {
 
         Hand hand = getCurrentActiveHand();
-        int cardCount = hand.cardCount();
+        int cardCount = hand.getCardCount();
 
         //if the second initial card is drawn
         if(cardCount == Hand.INITIAL_CARD_COUNT - 1) {
@@ -47,7 +45,7 @@ public class DealerBox extends Box {
         //clear all previous available next decisions
         availableNextDecisions.clear();
 
-        int cardCount = currentActiveHand.cardCount();
+        int cardCount = currentActiveHand.getCardCount();
         int score = currentActiveHand.score();
 
         //if the initial cards are drawn

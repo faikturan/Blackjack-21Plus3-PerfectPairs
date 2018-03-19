@@ -1,6 +1,7 @@
 package de.rs.blackjack.model.cards;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Rene Sommerfeld on 06.03.2018.
@@ -86,6 +87,11 @@ public class CardDeck extends ArrayList<Card> {
             default:
                 return new ValueCard(suit, value);
         }
+    }
+
+    public static Card createRandom() {
+        Random r = new Random();
+        return createCard(Suit.values()[r.nextInt(Suit.values().length)], Value.values()[r.nextInt(Value.values().length)]);
     }
 
 }
